@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LexiCraft</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
 </head>
 <body>
     <header>
@@ -13,95 +13,20 @@
         <div>Imagniary language words genertator</div>
     </header>
     <main>
-        <section>
-            <h2>Create your language</h2>
-            <form action="" id="form">
-                <div class="input-group">
-                    <h3 class="vowels">Vowels</h3>
-                    <input type="checkbox" name="vowels" id="a" value="a">
-                    <label for="a">a</label>
-                    <input type="checkbox" name="vowels" id="e" value="e">
-                    <label for="e">e</label>
-                    <input type="checkbox" name="vowels" id="i" value="i">
-                    <label for="i">i</label>
-                    <input type="checkbox" name="vowels" id="o" value="o">
-                    <label for="o">o</label>
-                    <input type="checkbox" name="vowels" id='u' value='u'>
-                    <label for="u">u</label>
-                </div class="input-group">
-                <div class="input-group">
-                    <h3 class="consonants">Consonants</h3>
-                    <input type="checkbox" name="consonants" id="b" value="b">
-                    <label for="b">b</label>
-                    <input type="checkbox" name="consonants" id="c" value="c">
-                    <label for="c">c</label>
-                    <input type="checkbox" name="consonants" id="d" value="d">
-                    <label for="d">d</label>
-                    <input type="checkbox" name="consonants" id="g" value="g">
-                    <label for="g">g</label>
-                    <input type="checkbox" name="consonants" id="h" value="h">
-                    <label for="h">h</label>
-                    <input type="checkbox" name="consonants" id="j" value="j">
-                    <label for="j">j</label>
-                    <input type="checkbox" name="consonants" id="k" value="k">
-                    <label for="k">k</label>
-                    <input type="checkbox" name="consonants" id="l" value="l">
-                    <label for="l">l</label>
-                    <input type="checkbox" name="consonants" id="m" value="m">
-                    <label for="m">m</label>
-                    <input type="checkbox" name="consonants" id="n" value="n">
-                    <label for="n">n</label>
-                    <input type="checkbox" name="consonants" id="p" value="p">
-                    <label for="p">p</label>
-                    <input type="checkbox" name="consonants" id="q" value="q">
-                    <label for="q">q</label>
-                    <input type="checkbox" name="consonants" id="s" value="s">
-                    <label for="s">s</label>
-                    <input type="checkbox" name="consonants" id="t" value="t">
-                    <label for="t">t</label>
-                    <input type="checkbox" name="consonants" id="v" value="v">
-                    <label for="v">v</label>
-                    <input type="checkbox" name="consonants" id="x" value="x">
-                    <label for="x">x</label>
-                </div>
-                <div class="input-group">
-                    <h3>Fricatives</h3>
-                    <input type="checkbox" name="fricatives" id="f" value="f">
-                    <label for="f">f</label>
-                    <input type="checkbox" name="fricatives" id="s" value="s">
-                    <label for="s">s</label>
-                    <input type="checkbox" name="fricatives" id="v" value="v">
-                    <label for="v">v</label>
-                    <input type="checkbox" name="fricatives" id="z" value="z">
-                    <label for="z">z</label>
-                </div>
-                <div class="input-group">
-                    <h3>Approximants</h3>
-                    <input type="checkbox" name="approximants" id="l" value="l">
-                    <label for="l">l</label>
-                    <input type="checkbox" name="approximants" id="r" value="r">
-                    <label for="r">r</label>
-                    <input type="checkbox" name="approximants" id="w" value="w">
-                    <label for="w">w</label>
-                    <input type="checkbox" name="approximants" id="y" value="y">
-                    <label for="y">y</label>
-                </div>
-                <div class="input-group">
-                    <h3>Pattern</h3>
-                    <label for="pattern">Pattern</label>
-                    <input type="text" name="pattern" id="pattern">
-                </div>
-                <button type="submit">Generate</button>
-            </form>
+        <section id="config-panel">
+            <div>
+                <h2>Configure your language<span>⚙️</span></h2>
+                <p class="text-muted">Here you can choose the letters composing your language.</p>
+            </div>
+            <div id="inputs"></div>
+            <button type="button" id="generate">Generate</button>
         </section>
-        <section>
-            <h2>News</h2>
-            <p>Here you can find the words generated for your language.</p>
-            <ul>
-                <li>Glop</li>
-                <li>Gloup</li>
-                <li>Glip</li>
-            </ul>
+        <section id="display-panel">
+            <div>
+                <h2>Glossary<span>📜</span></h2>
+                <p class="text-muted">Here you can find the generated words for each pattern.</p>
+            </div>
+            <div id="word-lists"></div>
         </section>
     </main>
 </body>

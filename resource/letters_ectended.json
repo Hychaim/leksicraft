@@ -1,0 +1,155 @@
+{
+    "consonant": {
+        "symbolicLetter": "C",
+        "letters": {
+            "b": "b",
+            "c": "k/ʃ",
+            "d": "d",
+            "f": "f",
+            "g": "ɡ",
+            "h": "h",
+            "j": "dʒ",
+            "k": "k",
+            "l": "l",
+            "m": "m",
+            "n": "n",
+            "p": "p",
+            "q": "k",
+            "r": "r",
+            "s": "s",
+            "t": "t",
+            "v": "v",
+            "w": "w",
+            "x": "ks",
+            "y": "j",
+            "z": "z"
+        }
+    },
+    "vowel": {
+        "symbolicLetter": "V",
+        "letters": {
+            "a": "æ/ɑː",
+            "e": "ɛ/eɪ",
+            "i": "ɪ/iː",
+            "o": "ɒ/oʊ",
+            "u": "ʌ/juː"
+        }
+    },
+    "sibilant": {
+        "symbolicLetter": "S",
+        "letters": {
+            "s": "s",
+            "z": "z",
+            "sh": "ʃ",
+            "zh": "ʒ",
+            "ch": "tʃ",
+            "j": "dʒ"
+        }
+    },
+    "liquid": {
+        "symbolicLetter": "L",
+        "letters": {
+            "l": "l",
+            "r": "r"
+        }
+    },
+    "rhotic": {
+        "symbolicLetter": "R",
+        "letters": {
+            "r": "r"
+        }
+    },
+    "nasal": {
+        "symbolicLetter": "N",
+        "letters": {
+            "m": "m",
+            "n": "n",
+            "ng": "ŋ"
+        }
+    },
+    "stop": {
+        "symbolicLetter": "T",
+        "letters": {
+            "p": "p",
+            "b": "b",
+            "t": "t",
+            "d": "d",
+            "k": "k",
+            "g": "ɡ"
+        }
+    },
+    "glottal": {
+        "symbolicLetter": "G",
+        "letters": {
+            "h": "h"
+        }
+    },
+    "fricatives": {
+        "symbolicLetter": "F",
+        "letters": {
+            "f": "f",
+            "v": "v",
+            "th": "θ",
+            "dh": "ð",
+            "s": "s",
+            "z": "z",
+            "sh": "ʃ",
+            "zh": "ʒ"
+        }
+    },
+    "voiceless_dental_fricative": {
+        "symbolicLetter": "Θ",
+        "letters": {
+            "th": "θ"
+        }
+    },
+    "voiced_dental_fricative": {
+        "symbolicLetter": "ð",
+        "letters": {
+            "th": "ð"
+        }
+    },
+    "voiceless_postalveolar_fricative": {
+        "symbolicLetter": "ʃ",
+        "letters": {
+            "sh": "ʃ"
+        }
+    },
+    "voiced_postalveolar_fricative": {
+        "symbolicLetter": "ʒ",
+        "letters": {
+            "s": "ʒ"
+        }
+    },
+    "extended_sounds": {
+        "symbolicLetter": "X",
+        "letters": {
+            "a": "æ/ɑː",
+            "e": "ɛ/eɪ",
+            "i": "ɪ/iː",
+            "o": "ɒ/oʊ",
+            "u": "ʌ/juː",
+            "b": "b",
+            "c": "k/ʃ",
+            "d": "d",
+            "f": "f",
+            "g": "ɡ",
+            "h": "h",
+            "j": "dʒ",
+            "k": "k",
+            "l": "l",
+            "m": "m",
+            "n": "n",
+            "p": "p",
+            "q": "k",
+            "r": "r",
+            "s": "s",
+            "t": "t",
+            "v": "v",
+            "w": "w",
+            "x": "ks",
+            "y": "j",
+            "z": "z"
+        }
+    }
+}
