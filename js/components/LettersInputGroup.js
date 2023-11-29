@@ -31,17 +31,29 @@ class LettersInputGroup extends HTMLElement {
             border-radius: var(--border-radius);
             background-color: var(--accent-color);
             color: var(--text-light-primary);
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: .25s ease;
+        }
+        h4 span:hover{
+            border-color: var(--accent-color);
+            background-color: var(--accent-color-light)
+        }
+        h4 span:active {
+            background-color: var(--accent-color-dark)
         }
     `
 
-    titleEl = document.createElement('h4')
-    symbolicCharEl = document.createElement('span')
+    titleEl = document.createElement("h4")
+    symbolicCharEl = document.createElement("span")
+
+    _letterInputs = []
 
     constructor() {
         super()
-        this.attachShadow({ mode: 'open' })
+        this.attachShadow({ mode: "open" })
 
-        const style = document.createElement('style')
+        const style = document.createElement("style")
         style.innerHTML = LettersInputGroup.css
 
         this.shadowRoot.append(style)
@@ -52,56 +64,78 @@ class LettersInputGroup extends HTMLElement {
     }
 
     get title() {
-        return this.getAttribute('title')
+        return this.getAttribute("title")
     }
     set title(value) {
-        this.setAttribute('title', value)
+        this.setAttribute("title", value)
     }
 
     get letters() {
         try {
-            return JSON.parse(this.getAttribute('letters'))
+            return JSON.parse(this.getAttribute("letters"))
         } catch (error) {
-            console.error('Invalid JSON for letters attribute')
+            console.error("Invalid JSON for letters attribute")
             return {}
         }
     }
     set letters(value) {
-        this.setAttribute('letters', value)
+        this.setAttribute("letters", value)
     }
 
     get symbolicChar() {
-        return this.getAttribute('symbolic-char')
+        return this.getAttribute("symbolic-char")
     }
     set symbolicChar(value) {
-        this.setAttribute('symbolic-char', value)
+        this.setAttribute("symbolic-char", value)
     }
 
     render() {
         this.titleEl.innerText = this.title.charAt(0).toUpperCase() + this.title.slice(1)
         this.symbolicCharEl.innerText = this.symbolicChar
+        this.symbolicCharEl.title = 'Click to select all'
         this.titleEl.append(this.symbolicCharEl)
         this.shadowRoot.append(this.titleEl)
 
         for (const [letter, phonetic] of Object.entries(this.letters)) {
-            const input = document.createElement('letter-input');
-            input.setAttribute('letter', letter);
-            input.setAttribute('phonetic', phonetic);
-            this.shadowRoot.append(input);
+            const input = document.createElement("letter-input")
+            input.setAttribute("letter", letter)
+            input.setAttribute("phonetic", phonetic)
+            this.shadowRoot.append(input)
+            this._letterInputs.push(input)
         }
+
+        this.symbolicCharEl.addEventListener("click", () => {
+            this.toggleChecked()
+        })
+    }
+
+    toggleChecked() {
+        // console.log(this._inputs)
+        let isAnyChecked = false
+        this._letterInputs.forEach((letterInput) => {
+            if (letterInput.checked) {
+                isAnyChecked = true
+            }
+        })
+
+        this._letterInputs.map((letterInput) => {
+            letterInput.checked = !isAnyChecked
+        })
     }
 
     getCheckedLetters() {
-        let letterInputs = Array.from(this.shadowRoot.querySelectorAll('letter-input'));
-        
-        let checkedLetters = letterInputs.filter(letterInput => {
-            return letterInput.checked ? true : false
-        }).map(letterInput => {
-            return letterInput.letter
-        })
-        
-        return checkedLetters;
+        let letterInputs = Array.from(this.shadowRoot.querySelectorAll("letter-input"))
+
+        let checkedLetters = letterInputs
+            .filter((letterInput) => {
+                return letterInput.checked ? true : false
+            })
+            .map((letterInput) => {
+                return letterInput.letter
+            })
+
+        return checkedLetters
     }
 }
 
-customElements.define('letter-input-group', LettersInputGroup);
+customElements.define("letter-input-group", LettersInputGroup)
