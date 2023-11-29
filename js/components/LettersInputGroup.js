@@ -33,7 +33,7 @@ class LettersInputGroup extends HTMLElement {
             color: var(--text-light-primary);
             box-shadow: var(--box-shadow);
             cursor: pointer;
-            transition: .25s ease;
+            transition: var(--btn-transition);
         }
         h4 span:hover{
             border-color: var(--accent-color);

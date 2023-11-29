@@ -55,10 +55,11 @@ class PatternInput extends HTMLElement {
             color: var(--text-light-primary);
             box-shadow: var(--box-shadow);
             cursor: pointer;
-            transition: .25s ease;
+            transition: var(--btn-transition);
         }
         button:hover {
-            border-color: var(--secondary-color-dark);
+            border-color: var(--secondary-color);
+            background: var(--secondary-color-light);
         }
         button:active {
             background: var(--secondary-color-dark);
@@ -185,7 +186,9 @@ class PatternInput extends HTMLElement {
         this.patternInput.placeholder = "TVFLV"
         this.patternInput.pattern = `[${this.validChars.join("")}${this.validChars.join("").toLowerCase()} ]+`
         
+        this.addBtn.type = "button"
         this.addBtn.innerText = "Add"
+        this.addBtn.title = "Add pattern"
 
         let patternInputContainer = document.createElement("div")
         patternInputContainer.id = "patternInputContainer"
