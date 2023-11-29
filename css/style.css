@@ -17,6 +17,7 @@
     /* Accent color */
     --accent-color: #429EA6;
     --accent-color-light: #7cc4cb;
+    --accent-color-dark: #2f6f75;
 
     /* Neutral color scheme */
     --neutral-light: hsl(221, 44%, 93%);

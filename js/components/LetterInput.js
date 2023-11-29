@@ -63,7 +63,10 @@ class LetterInput extends HTMLElement {
     }
 
     get checked() {
-        return this.shadowRoot.querySelector('input').checked
+        return this.input.checked
+    }
+    set checked(value) {
+        this.input.checked = value
     }
 
     get name() {
