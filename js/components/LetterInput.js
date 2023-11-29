@@ -30,7 +30,7 @@ class LetterInput extends HTMLElement {
             border-radius: var(--border-radius);
             background-color: var(--primary-color-light);
             box-shadow: var(--box-shadow);
-            transition: .25s ease;
+            transition: var(--input-transition);
         }
         input:hover ~ label {
             border-color: var(--secondary-color-light);

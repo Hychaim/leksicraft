@@ -55,6 +55,8 @@
     /* Utils */
     --border-radius: 0.5rem;
     --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --btn-transition: all 0.1s ease;
+    --input-transition: all 0.2s ease;
 
     --panel-offset: 1.5rem;
 }
@@ -183,16 +185,16 @@ button {
     background: var(--secondary-color);
     color: var(--text-light-primary);
     font-size: var(--font-size-h4);
-    /* font-weight: 700; */
     box-shadow: var(--box-shadow);
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: var(--btn-transition);
 }
 button:hover {
-    border-color: var(--primary-color-dark);
+    border-color: var(--secondary-color);
+    background: var(--secondary-color-light);
 }
 button:active {
-    background: var(--primary-color-dark);
+    background: var(--secondary-color-dark);
 }
 
 @media screen and (max-width: 1024px) {
