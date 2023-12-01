@@ -2,7 +2,7 @@ class Language {
     lettersGroups = []
     patterns = []
     wordCount = 10
-    words = []
+    wordsData = []
 
     constructor(lettersGroups, patterns, wordCount) {
         this.lettersGroups = lettersGroups
@@ -19,19 +19,19 @@ class Language {
 
         this.patterns.forEach((pattern) => {
             const patternLetters = pattern.split("")
-            this.currentWordCount = this.wordCount
-            const maxUniqueCombinations = patternLetters.reduce((acc, letter) => acc * (this.lettersGroups[letter] ? this.lettersGroups[letter].length : 0), 1)
+            let currentWordCount = this.wordCount
+            const uniqueCombinationsCount = patternLetters.reduce((acc, letter) => acc * (this.lettersGroups[letter] ? this.lettersGroups[letter].length : 0), 1)
 
-            if (maxUniqueCombinations < this.currentWordCount) {
-                console.warn(`Maximum unique words for pattern "${pattern}" is ${maxUniqueCombinations}. Adjusting word count.`)
-                this.currentWordCount = maxUniqueCombinations
+            if (uniqueCombinationsCount < currentWordCount) {
+                console.warn(`Maximum unique words for pattern "${pattern}" is ${uniqueCombinationsCount}. Adjusting word count.`)
+                currentWordCount = uniqueCombinationsCount
             }
 
             const wordsSet = new Set()
             let attempts = 0
-            const maxAttempts = this.currentWordCount * 10
+            const maxAttempts = currentWordCount * 10
 
-            for (let i = 0; i < this.currentWordCount && attempts < maxAttempts; i++) {
+            for (let i = 0; i < currentWordCount && attempts < maxAttempts; i++) {
                 let word = patternLetters.map((patternLetter) => this.getRandomLetter(this.lettersGroups[patternLetter])).join("")
 
                 if (wordsSet.has(word)) {
@@ -43,7 +43,9 @@ class Language {
                 wordsSet.add(word)
             }
 
-            this.words[pattern] = Array.from(wordsSet).sort()
+            this.wordsData[pattern] = {}
+            this.wordsData[pattern].uniqueCombinationsCount = uniqueCombinationsCount
+            this.wordsData[pattern].words = Array.from(wordsSet).sort()
         })
     }
 

@@ -11,19 +11,27 @@ class WordList extends HTMLElement {
             border-radius: var(--border-radius);
             padding-inline: 1em !important;
         }
-        h4 {
+        .title-container {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin: var(--margin-h);
-            padding-inline: 0.25em;
-            font-size: var(--font-size-h4);
-            font-family: var(--font-family-h);
-            font-weight: var(--font-weight-h);
+            padding-inline: 0.5em;
             line-height: var(--line-height-h);
             border-radius: var(--border-radius);
             background-color: var(--primary-color-dark);
             box-shadow: inset var(--box-shadow);
+        }
+        .title-container > h4 {
+            margin: 0;
+            font-size: var(--font-size-h4);
+            font-family: var(--font-family-h);
+            font-weight: var(--font-weight-h);
             word-break: break-all;
+        }
+        .title-container > span {
+            color: var(--accent-color);
+            font-style: italic;
         }
         ul {
             --gap: 2rem;
@@ -56,8 +64,11 @@ class WordList extends HTMLElement {
         }
     `
 
+    titleContainer = document.createElement("div")
     title = document.createElement("h4")
+    uniqueCombinationsCount = document.createElement("span")
     wordList = document.createElement("ul")
+
     _pattern = ""
 
     constructor() {
@@ -87,19 +98,35 @@ class WordList extends HTMLElement {
 
     render() {
         this.title.innerText = this.pattern
-        this.shadowRoot.append(this.title, this.wordList)
+        this.titleContainer.className = "title-container"
+        this.titleContainer.append(this.title, this.uniqueCombinationsCount)
+        this.shadowRoot.append(this.titleContainer, this.wordList)
     }
 
-    updateWords(words) {
-        if(words.length === 0) {
+    updateWords(wordsData) {
+        this.wordList.innerHTML = ""
+
+        this.uniqueCombinationsCount.title = Intl.NumberFormat("en-US", {}).format(wordsData.uniqueCombinationsCount)
+        let uniqueCombinationsCount = this.formatUniqueCombinationNumber(wordsData.uniqueCombinationsCount)
+        this.uniqueCombinationsCount.innerText = uniqueCombinationsCount
+
+        if (wordsData.uniqueCombinationsCount === 0) {
             this.wordList.innerHTML = "No words found"
             return
         }
-        words.forEach((word) => {
+        wordsData.words.forEach((word) => {
             const listItem = document.createElement("li")
             listItem.textContent = word
             this.wordList.appendChild(listItem)
         })
+    }
+
+    formatUniqueCombinationNumber(number, maxThreshold = 100000000000000) {
+        if (number > maxThreshold) {
+            return `+${new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(maxThreshold)}`
+        } else {
+            return Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(number)
+        }
     }
 }
 

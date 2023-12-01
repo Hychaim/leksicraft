@@ -39,9 +39,9 @@ function getLanguage() {
     return new Language(getAllCheckedLetters(), patternInput.patterns, patternInput.wordCount)
 }
 
-function displaWordLists(wordLists) {
+function displaWordLists(wordsData) {
     wordListsContainer.innerHTML = ""
-    Object.entries(wordLists).forEach(([pattern, words]) => {
+    Object.entries(wordsData).forEach(([pattern, words]) => {
         const wordList = document.createElement("word-list")
         wordList.pattern = pattern
         wordList.updateWords(words)
@@ -51,7 +51,8 @@ function displaWordLists(wordLists) {
 
 function generate() {
     const language = getLanguage()
-    displaWordLists(language.words)
+    console.log("🚀 ~ file: main.js:54 ~ generate ~ language:", language)
+    displaWordLists(language.wordsData)
 }
 
 function main() {
