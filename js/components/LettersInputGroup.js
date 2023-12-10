@@ -5,7 +5,7 @@ class LettersInputGroup extends HTMLElement {
         }
         :host {
             padding-bottom: 0.75rem !important;
-            border: var(--secondary-color-light) 2px solid;
+            border: hsl(var(--secondary-color-light)) 2px solid;
             border-radius: var(--border-radius);
             padding-inline: 1em !important;
             box-shadow: var(--box-shadow);
@@ -27,20 +27,20 @@ class LettersInputGroup extends HTMLElement {
             line-height: calc(1em + 0.25em);
             text-align: center;
             border: 2px solid;
-            border-color: var(--accent-color-light);
+            border-color: hsl(var(--accent-color-light));
             border-radius: var(--border-radius);
-            background-color: var(--accent-color);
+            background-color: hsl(var(--accent-color));
             color: var(--text-light-primary);
             box-shadow: var(--box-shadow);
             cursor: pointer;
             transition: var(--btn-transition);
         }
         h4 span:hover{
-            border-color: var(--accent-color);
-            background-color: var(--accent-color-light)
+            border-color: hsl(var(--accent-color));
+            background-color: hsl(var(--accent-color-light));
         }
         h4 span:active {
-            background-color: var(--accent-color-dark)
+            background-color: hsl(var(--accent-color-dark));
         }
     `
 

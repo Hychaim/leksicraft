@@ -19,7 +19,7 @@ class WordList extends HTMLElement {
             padding-inline: 0.5em;
             line-height: var(--line-height-h);
             border-radius: var(--border-radius);
-            background-color: var(--primary-color-dark);
+            background-color: hsl(var(--primary-color-dark));
             box-shadow: inset var(--box-shadow);
         }
         .title-container > h4 {
@@ -30,14 +30,14 @@ class WordList extends HTMLElement {
             word-break: break-all;
         }
         .title-container > span {
-            color: var(--accent-color);
+            color: hsl(var(--accent-color));
             font-style: italic;
         }
         ul {
             --gap: 2rem;
             --line-offset: calc(var(--gap) / 2);
             --line-thickness: 2px;
-            --line-color: var(--primary-color-dark);
+            --line-color: hsl(var(--primary-color-dark));
 
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
