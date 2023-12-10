@@ -10,7 +10,7 @@ class PatternInput extends HTMLElement {
             justify-content: space-between;
             padding-bottom: 0.75rem !important;
             border-radius: var(--border-radius);
-            border: var(--secondary-color-light) 2px solid;
+            border: hsl(var(--secondary-color-light)) 2px solid;
             padding-inline: 1em !important;
             box-shadow: var(--box-shadow);
         }
@@ -31,9 +31,9 @@ class PatternInput extends HTMLElement {
             color: var(--text-primary);
             border: none;
             border-bottom: 2px solid;
-            border-color: var(--accent-color-light);
+            border-color: hsl(var(--accent-color-light));
             border-radius: var(--border-radius);
-            background-color: var(--primary-color-light);
+            background-color: hsl(var(--primary-color-light));
             box-shadow: inset var(--box-shadow);
         }
         input:invalid {
@@ -49,20 +49,20 @@ class PatternInput extends HTMLElement {
             margin-inline: 0.5rem;
             padding: 0.25em 0.5em;
             font-size: 1.25rem;
-            border: var(--secondary-color-dark) 2px solid;
+            border: hsl(var(--secondary-color-dark)) 2px solid;
             border-radius: var(--border-radius);
-            background: var(--secondary-color);
+            background: hsl(var(--secondary-color));
             color: var(--text-light-primary);
             box-shadow: var(--box-shadow);
             cursor: pointer;
             transition: var(--btn-transition);
         }
         button:hover {
-            border-color: var(--secondary-color);
-            background: var(--secondary-color-light);
+            border-color: hsl(var(--secondary-color));
+            background: hsl(var(--secondary-color-light));
         }
         button:active {
-            background: var(--secondary-color-dark);
+            background: hsl(var(--secondary-color-dark));
         }
 
         #patternForm{
@@ -89,9 +89,9 @@ class PatternInput extends HTMLElement {
             display: flex;
             align-items: center;
             padding-inline: 0.25em;
-            border: var(--secondary-color-light) 2px solid;
+            border: hsl(var(--secondary-color-light)) 2px solid;
             border-radius: var(--border-radius);
-            background-color: var(--primary-color-dark);
+            background-color: hsl(hsl(var(--primary-color-dark)));
             box-shadow: inset var(--box-shadow);
             font-size: var(--font-size-h5);
             box-shadow: var(--box-shadow);

@@ -26,26 +26,26 @@ class LetterInput extends HTMLElement {
             display: grid;
             justify-items: center;
             color: var(--text-primary);
-            border: var(--primary-color-dark) 2px solid;
+            border: hsl(var(--primary-color-dark)) 2px solid;
             border-radius: var(--border-radius);
-            background-color: var(--primary-color-light);
+            background-color: hsl(var(--primary-color-light));
             box-shadow: var(--box-shadow);
             transition: var(--input-transition);
         }
         input:hover ~ label {
-            border-color: var(--secondary-color-light);
+            border-color: hsl(var(--secondary-color-light));
         }
         input:active ~ label {
-            background: var(--primary-color);
+            background: hsl(var(--primary-color));
         }
 
         input[type=checkbox]:checked ~ label {
-            background-color: var(--primary-color-dark);
-            border-color: var(--secondary-color-light);
+            background-color: hsl(var(--primary-color-dark));
+            border-color: hsl(var(--secondary-color-light));
             box-shadow: inset var(--box-shadow);
         }
         input[type=checkbox]:checked:active ~ label {
-            background-color: var(--primary-color-light);
+            background-color: hsl(var(--primary-color-light));
         }
     `
 
