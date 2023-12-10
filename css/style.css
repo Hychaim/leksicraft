@@ -1,39 +1,39 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:400");
 
 :root {
-    /* Background color scheme */
-    --background-color: #fafafa;
-
     /* Primary color scheme */
-    --primary-color: #F4E8C1;
-    --primary-color-light: #FCF9EE;
-    --primary-color-dark: #EDD997;
+    --primary-color: 46, 70%, 86%;
+    --primary-color-light: 49, 68%, 94%;
+    --primary-color-dark: 46, 70%, 76%;
 
     /* Secondary color scheme */
-    --secondary-color: #5A3825;
-    --secondary-color-light: #855235;
-    --secondary-color-dark: #2B1B12;
+    --secondary-color: 22, 42%, 25%;
+    --secondary-color-light: 22, 43%, 36%;
+    --secondary-color-dark: 22, 41%, 12%;
 
     /* Accent color */
-    --accent-color: #429EA6;
-    --accent-color-light: #7cc4cb;
-    --accent-color-dark: #2f6f75;
+    --accent-color: 185, 43%, 45%;
+    --accent-color-light: 185, 43%, 64%;
+    --accent-color-dark: 185, 43%, 32%;
 
     /* Neutral color scheme */
-    --neutral-light: hsl(221, 44%, 93%);
-    --neutral-medium: hsl(221, 18%, 63%);
-    --neutral-dark: hsl(221, 14%, 33%);
+    --neutral-light: 221, 44%, 93%;
+    --neutral-medium: 222, 18%, 63%;
+    --neutral-dark: 219, 15%, 33%;
 
     /* Success, Warning, and Error colors */
-    --success-color: #52c41a;
-    --warning-color: #fa14ad;
-    --error-color: rgb(202, 84, 90);
+    --success-color: 100, 77%, 44%;
+    --warning-color: 320, 96%, 53%;
+    --error-color: 357, 53%, 56%;
+
+    /* Background color scheme */
+    --background-color: var(--neutral-medium), 10%;
 
     /* Text colors */
-    --text-primary: var(--secondary-color);
-    --text-secondary: var(--secondary-color-light);
-    --text-light-primary: var(--primary-color-light);
-    --text-light-secondary: var(--primary-color);
+    --text-primary: hsl(var(--secondary-color));
+    --text-secondary: hsl(var(--secondary-color-light));
+    --text-light-primary: hsl(var(--primary-color-light));
+    --text-light-secondary: hsl(var(--primary-color));
 
     /* Text values */
     --margin-bottom-p: 1rem;
@@ -54,11 +54,12 @@
 
     /* Utils */
     --border-radius: 0.5rem;
-    --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --box-shadow: rgba(0, 0, 0, 0.075) 0px 2px 5px -1px, rgba(0, 0, 0, 0.25) 0px 1px 3px -1px;
     --btn-transition: all 0.1s ease;
     --input-transition: all 0.2s ease;
-
-    --panel-offset: 1.5rem;
+    --perspective: 1500vh;
+    --page-rotation: 6deg;
+    --page-rotation-negative: calc(var(--page-rotation) * -1);
 }
 
 *,
@@ -70,8 +71,11 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
-    background: var(--background-color);
+    background: hsl(var(--background-color));
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
     line-height: 1.75;
@@ -127,47 +131,92 @@ header {
     text-align: center;
 }
 
+header {
+    position: relative;
+    width: clamp(256px, 40%, 512px);
+    margin: 1rem auto;
+    border-radius: var(--border-radius);
+    background-color: hsl(var(--primary-color));
+    box-shadow: inset 0 0 4rem hsl(var(--secondary-color-light), 0.25), inset 0 0 1rem hsl(var(--secondary-color-light), 0.1);
+}
+
+header:before,
+header:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 25%;
+    height: 50%;
+    top: 50%;
+    background-color: hsl(var(--primary-color));
+    z-index: -1;
+}
+header:before {
+    -webkit-transform: translate(50%, -50%);
+    -moz-transform: translate(50%, -50%);
+    -o-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
+    left: -30%;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 10% 50%, 0 0);
+    box-shadow: inset -50px 0px 40px hsl(var(--secondary-color), 0.4), inset 0 0 2rem hsl(var(--secondary-color-light), 0.25);
+}
+header:after {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    right: -30%;
+    clip-path: polygon(100% 0, 90% 50%, 100% 100%, 0 100%, 0 0);
+    box-shadow: inset 50px 0px 40px hsl(var(--secondary-color), 0.4), inset 0 0 2rem hsl(var(--secondary-color-light), 0.25);
+}
+
+header h1 {
+    margin: 0;
+}
+
 main {
     display: flex;
+    flex-direction: column;
     justify-self: center;
+    gap: 1rem;
     max-width: 1920px;
-    margin: auto;
-    margin-top: calc(var(--panel-offset) + 1rem);
+    margin: 1rem;
     padding: 1rem;
+    background-color: hsl(var(--secondary-color));
+    border-radius: var(--border-radius);
 }
 
 main section {
-    flex: 1;
-    padding-inline: 1rem;
+    padding: 1rem;
+    background-color: hsl(var(--primary-color));
+    box-shadow: inset 0 0 10rem hsl(var(--secondary-color-light), 0.3), inset 0 0 2rem hsl(var(--secondary-color-light), 0.3);
+}
+
+#config-panel {
+    border-radius: 20px 20px 20px 20px / 6px 6px 6px 6px;
+}
+
+#display-panel {
+    border-radius: 20px 20px 20px 20px / 6px 6px 6px 6px;
+}
+
+hr {
+    width: 80%;
+    margin-inline: auto;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(90deg, #0000 0%, hsl(var(--accent-color)) 5%, hsl(var(--accent-color)) 50%, hsl(var(--accent-color)) 80%, #0000 100%);
 }
 
 h2 > span {
     float: right;
 }
 
-#config-panel {
-    padding-right: var(--panel-offset);
-    background-color: var(--primary-color);
-    border: var(--secondary-color) 1rem solid;
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-#display-panel {
-    margin-left: calc(var(--panel-offset) * -1);
-    margin-block: calc(var(--panel-offset) * -1);
-    padding-block: calc(var(--panel-offset));
-    background-color: var(--primary-color);
-    border: var(--secondary-color) 1rem solid;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
 #inputs {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 1rem;
+    margin: 0 auto;
 }
 
 #inputs > *:last-child,
@@ -180,9 +229,9 @@ button {
     width: 100%;
     margin: 20px auto;
     padding: 10px;
-    border: var(--secondary-color-dark) 2px solid;
+    border: hsl(var(--secondary-color-dark)) 2px solid;
     border-radius: var(--border-radius);
-    background: var(--secondary-color);
+    background: hsl(var(--secondary-color));
     color: var(--text-light-primary);
     font-size: var(--font-size-h4);
     box-shadow: var(--box-shadow);
@@ -190,44 +239,35 @@ button {
     transition: var(--btn-transition);
 }
 button:hover {
-    border-color: var(--secondary-color);
-    background: var(--secondary-color-light);
+    border-color: hsl(var(--secondary-color));
+    background: hsl(var(--secondary-color-light));
 }
 button:active {
-    background: var(--secondary-color-dark);
+    background: hsl(var(--secondary-color-dark));
 }
 
-@media screen and (max-width: 1024px) {
+@media (min-width: 1024px) {
     main {
-        flex-direction: column;
+        flex-direction: row;
+        gap: 0;
     }
+
+    main section {
+        width: 50%;
+        padding: 1rem 3rem 1rem 2rem;
+    }
+
+    main section hr {
+        display: none;
+    }
+
     #config-panel {
-        border-top-left-radius: var(--border-radius);
-        border-bottom-left-radius: 0;
-        border-top-right-radius: var(--border-radius);
+        border-radius: 80% 20px 20px 80% / 6px 10px 10px 6px;
+        box-shadow: inset -0.25px 0 1px hsl(var(--secondary-color-dark)), inset -1rem 0 10rem hsl(var(--secondary-color-light), 0.3), inset -0.5rem 0 0.5rem hsl(var(--secondary-color-dark), 0.3), 0px 6px 12px 6px hsl(var(--secondary-color-dark), 0.75);
     }
-    
+
     #display-panel {
-        margin-inline: calc(var(--panel-offset) * -0.25);
-        margin-top: calc(var(--panel-offset) * -1);
-        padding-block: 0;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    main {
-        flex-direction: column;
-    }
-    #inputs {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    main {
-        flex-direction: column;
-    }
-    #inputs {
-        grid-template-columns: repeat(1, 1fr);
+        border-radius: 20px 80% 80% 20px / 10px 6px 6px 10px;
+        box-shadow: inset 0.25px 0 1px hsl(var(--secondary-color-dark)), inset 1rem 0 10rem hsl(var(--secondary-color-light), 0.3), inset 0.5rem 0 0.5rem hsl(var(--secondary-color-dark), 0.3), 0px 6px 12px 6px hsl(var(--secondary-color-dark), 0.75);
     }
 }
