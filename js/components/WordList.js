@@ -44,8 +44,9 @@ class WordList extends HTMLElement {
             gap: 1.5em;
             margin: 0;
             padding: 0 0 1rem 0;
-            text-align: center;
             list-style: none;
+            text-align: center;
+            font-family: var(--font-family-simple);
             overflow: hidden;
         }
         li {
