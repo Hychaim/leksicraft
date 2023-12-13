@@ -28,6 +28,7 @@ class PatternInput extends HTMLElement {
             padding: 0.25em 0.5em;
             margin-left: 0.5rem;
             font-size: 1.25rem;
+            font-family: var(--font-family);
             color: var(--text-primary);
             border: none;
             border-bottom: 2px solid;
@@ -53,6 +54,7 @@ class PatternInput extends HTMLElement {
             border-radius: var(--border-radius);
             background: hsl(var(--secondary-color));
             color: var(--text-light-primary);
+            font-family: var(--font-family);
             box-shadow: var(--box-shadow);
             cursor: pointer;
             transition: var(--btn-transition);
@@ -91,8 +93,8 @@ class PatternInput extends HTMLElement {
             padding-inline: 0.25em;
             border: hsl(var(--secondary-color-light)) 2px solid;
             border-radius: var(--border-radius);
-            background-color: hsl(hsl(var(--primary-color-dark)));
-            box-shadow: inset var(--box-shadow);
+            background-color: hsl(var(--primary-color-dark));
+            box-shadow: svar(--box-shadow);
             font-size: var(--font-size-h5);
             box-shadow: var(--box-shadow);
             word-break: break-all;

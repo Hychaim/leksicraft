@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Ubuntu:400");
+@import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap');
 
 :root {
     /* Primary color scheme */
@@ -35,11 +36,15 @@
     --text-light-primary: hsl(var(--primary-color-light));
     --text-light-secondary: hsl(var(--primary-color));
 
+    /* Fonts */
+    --font-family: "Macondo", sans-serif;
+    --font-family-simple: "Playpen Sans", sans-serif;
+
     /* Text values */
     --margin-bottom-p: 1rem;
 
     --margin-h: 0.75rem 0 0.5rem;
-    --font-family-h: "Ubuntu", sans-serif;
+    --font-family-h: var(--font-family);
     --font-weight-h: 400;
     --line-height-h: 1.3;
 
@@ -76,7 +81,7 @@ body {
     align-items: center;
     height: 100%;
     background: hsl(var(--background-color));
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Macondo", cursive;
     font-weight: 400;
     line-height: 1.75;
     color: var(--text-primary);
@@ -205,7 +210,7 @@ hr {
     margin-inline: auto;
     border: 0;
     height: 2px;
-    background-image: linear-gradient(90deg, #0000 0%, hsl(var(--accent-color)) 5%, hsl(var(--accent-color)) 50%, hsl(var(--accent-color)) 80%, #0000 100%);
+    background-image: linear-gradient(90deg, #0000 0%, hsl(var(--primary-color-dark)) 5%, hsl(var(--primary-color-dark)) 50%, hsl(var(--primary-color-dark)) 80%, #0000 100%);
 }
 
 h2 > span {
@@ -234,6 +239,8 @@ button {
     background: hsl(var(--secondary-color));
     color: var(--text-light-primary);
     font-size: var(--font-size-h4);
+    font-family: var(--font-family);
+    text-transform: uppercase;
     box-shadow: var(--box-shadow);
     cursor: pointer;
     transition: var(--btn-transition);

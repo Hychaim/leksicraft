@@ -24,7 +24,6 @@ class LettersInputGroup extends HTMLElement {
             font-size: var(--font-size-h4);
             width: calc(1em + 0.5em);
             height: calc(1em + 0.5em);
-            line-height: calc(1em + 0.25em);
             text-align: center;
             border: 2px solid;
             border-color: hsl(var(--accent-color-light));
@@ -110,7 +109,6 @@ class LettersInputGroup extends HTMLElement {
     }
 
     toggleChecked() {
-        // console.log(this._inputs)
         let isAnyChecked = false
         this._letterInputs.forEach((letterInput) => {
             if (letterInput.checked) {

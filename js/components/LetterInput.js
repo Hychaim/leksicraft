@@ -26,6 +26,7 @@ class LetterInput extends HTMLElement {
             display: grid;
             justify-items: center;
             color: var(--text-primary);
+            font-family: var(--font-family-simple);
             border: hsl(var(--primary-color-dark)) 2px solid;
             border-radius: var(--border-radius);
             background-color: hsl(var(--primary-color-light));
