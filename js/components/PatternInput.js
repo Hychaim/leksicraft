@@ -4,6 +4,10 @@ class PatternInput extends HTMLElement {
             box-sizing: border-box;
         }
 
+        *:focus-visible {
+            outline: var(--outline);
+        }
+
         :host {
             display: flex;
             flex-wrap: wrap;
@@ -38,7 +42,10 @@ class PatternInput extends HTMLElement {
             box-shadow: inset var(--box-shadow);
         }
         input:invalid {
-            border-color: var(--error-color);
+            border-color: hsl(var(--error-color));
+        }
+        input:invalid:focus-visible {
+            outline-color: hsl(var(--error-color));
         }
 
         input[type=number] {
@@ -185,7 +192,7 @@ class PatternInput extends HTMLElement {
         this.patternInput.type = "text"
         this.patternInput.name = "pattern"
         this.patternInput.id = "patternInput"
-        this.patternInput.placeholder = "TVFLV"
+        this.patternInput.placeholder = "PVAVF"
         this.patternInput.pattern = `[${this.validChars.join("")}${this.validChars.join("").toLowerCase()} ]+`
         
         this.addBtn.type = "button"

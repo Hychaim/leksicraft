@@ -63,6 +63,7 @@
     --box-shadow: rgba(0, 0, 0, 0.075) 0px 2px 5px -1px, rgba(0, 0, 0, 0.25) 0px 1px 3px -1px;
     --btn-transition: all 0.1s ease;
     --input-transition: all 0.2s ease;
+    --outline: 2px solid hsl(var(--accent-color));
 }
 
 *,
@@ -71,6 +72,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+*:focus-visible {
+    outline: var(--outline);
 }
 
 body {
@@ -225,7 +230,7 @@ h2 > span {
 
 #inputs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
     grid-gap: 1rem;
     margin: 0 auto;
 }
