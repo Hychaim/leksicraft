@@ -2,24 +2,46 @@
     "vowel": {
         "symbolicLetter": "V",
         "letters": {
-            "a": "æ/ɑː",
-            "e": "ɛ/eɪ",
-            "i": "ɪ/iː",
-            "o": "ɒ/oʊ",
-            "u": "ʌ/juː"
+            "a": "a, æ, ɑ, ɐ, ʌ",
+            "e": "e, ɛ",
+            "œ": "œ, ɘ, ø",
+            "i": "e, ɛ",
+            "o": "o, ɔ, ʊ",
+            "u": "y, ʏ",
+            "oo": "u"
         }
     },
-    "fricatives": {
+    "plosive": {
+        "symbolicLetter": "P",
+        "letters": {
+            "p": "p",
+            "b": "b, ʙ, ⱱ",
+            "t": "t, ʈ",
+            "d": "d, ɖ",
+            "k": "c, k, q",
+            "g": "ɟ, g, ɢ",
+            "‘": "ʔ"
+        }
+    },
+    "nasal": {
+        "symbolicLetter": "N",
+        "letters": {
+            "m": "m, ɱ",
+            "n": "n",
+            "ny": "ɳ, ɲ",
+            "ng": "ŋ, ɴ"
+        }
+    },
+    "fricative": {
         "symbolicLetter": "F",
         "letters": {
-            "f": "f",
-            "v": "v",
-            "th": "θ",
-            "dh": "ð",
-            "s": "s",
-            "z": "z",
-            "sh": "ʃ",
-            "zh": "ʒ"
+            "f": "ɸ, f",
+            "v": "β, v, ʋ",
+            "th": "θ, ð",
+            "kh": "x, χ",
+            "rh": "ʀ, ɣ, ʁ, ʕ",
+            "h": "h, ɦ",
+            "ch": "ɬ, ɮ"
         }
     },
     "sibilant": {
@@ -27,79 +49,55 @@
         "letters": {
             "s": "s",
             "z": "z",
-            "sh": "ʃ",
-            "zh": "ʒ",
-            "ch": "tʃ",
-            "j": "dʒ"
+            "sh": "ʃ, ʂ",
+            "j": "ʒ, ʝ, ʐ"
         }
     },
-    "stop": {
-        "symbolicLetter": "T",
+    "approximant": {
+        "symbolicLetter": "A",
         "letters": {
-            "p": "p",
-            "b": "b",
-            "t": "t",
-            "d": "d",
-            "k": "k",
-            "g": "ɡ"
-        }
-    },
-    "nasal": {
-        "symbolicLetter": "N",
-        "letters": {
-            "m": "m",
-            "n": "n",
-            "ng": "ŋ"
-        }
-    },
-    "liquid": {
-        "symbolicLetter": "L",
-        "letters": {
-            "l": "l",
-            "r": "r"
-        }
-    },
-    "rhotic": {
-        "symbolicLetter": "R",
-        "letters": {
-            "r": "r"
-        }
-    },
-    "glottal": {
-        "symbolicLetter": "G",
-        "letters": {
-            "h": "h"
+            "l": "l, ɭ, ʟ",
+            "y": "j, ʎ",
+            "w": "ɹ, ɰ",
+            "rw": "ɻ"
         }
     },
     "all": {
         "symbolicLetter": "X",
         "letters": {
-            "a": "æ/ɑː",
-            "e": "ɛ/eɪ",
-            "i": "ɪ/iː",
-            "o": "ɒ/oʊ",
-            "u": "ʌ/juː",
-            "b": "b",
-            "c": "k/ʃ",
-            "d": "d",
-            "f": "f",
-            "g": "ɡ",
-            "h": "h",
-            "j": "dʒ",
-            "k": "k",
-            "l": "l",
-            "m": "m",
-            "n": "n",
+            "a": "a, æ, ɑ, ɐ, ʌ",
+            "e": "e, ɛ",
+            "œ": "œ, ɘ, ø",
+            "i": "e, ɛ",
+            "o": "o, ɔ, ʊ",
+            "u": "y, ʏ",
+            "oo": "u",
             "p": "p",
-            "q": "k",
-            "r": "r",
+            "b": "b, ʙ, ⱱ",
+            "t": "t, ʈ",
+            "d": "d, ɖ",
+            "k": "c, k, q",
+            "g": "ɟ, g, ɢ",
+            "‘": "ʔ",
+            "m": "m, ɱ",
+            "n": "n",
+            "ny": "ɳ, ɲ",
+            "ng": "ŋ, ɴ",
+            "f": "ɸ, f",
+            "v": "β, v, ʋ",
+            "th": "θ, ð",
+            "kh": "x, χ",
+            "rh": "ʀ, ɣ, ʁ, ʕ",
+            "h": "h, ɦ",
+            "ch": "ɬ, ɮ",
             "s": "s",
-            "t": "t",
-            "v": "v",
-            "w": "w",
-            "x": "ks",
-            "y": "j",
-            "z": "z"
+            "z": "z",
+            "sh": "ʃ, ʂ",
+            "j": "ʒ, ʝ, ʐ",
+            "l": "l, ɭ, ʟ",
+            "y": "j, ʎ",
+            "w": "ɹ, ɰ",
+            "rw": "ɻ"
         }
     }
 }
