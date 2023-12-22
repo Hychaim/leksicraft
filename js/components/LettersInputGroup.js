@@ -3,6 +3,11 @@ class LettersInputGroup extends HTMLElement {
         *{
             box-sizing: border-box;
         }
+
+        *:focus-visible {
+            outline: var(--outline);
+        }
+
         :host {
             padding-bottom: 0.75rem !important;
             border: hsl(var(--secondary-color-light)) 2px solid;
@@ -10,6 +15,7 @@ class LettersInputGroup extends HTMLElement {
             padding-inline: 1em !important;
             box-shadow: var(--box-shadow);
         }
+
         h4 {
             display: flex;
             justify-content: space-between;
@@ -19,6 +25,7 @@ class LettersInputGroup extends HTMLElement {
             font-weight: var(--font-weight-h);
             line-height: var(--line-height-h);
         }
+
         h4 span {
             display: inline-block;
             font-size: var(--font-size-h4);
@@ -34,6 +41,7 @@ class LettersInputGroup extends HTMLElement {
             cursor: pointer;
             transition: var(--btn-transition);
         }
+
         h4 span:hover{
             border-color: hsl(var(--accent-color));
             background-color: hsl(var(--accent-color-light));
