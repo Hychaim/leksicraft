@@ -37,7 +37,8 @@
     --text-light-secondary: hsl(var(--primary-color));
 
     /* Fonts */
-    font-size: clamp(12px, 12px + (16 - 12) * ((100vw - 1200px) / (3440 - 1200)), 16px);
+    --font-size: clamp(14px, 14px + (18 - 14) * ((100vw - 1200px) / (3440 - 1200)), 18px);
+    font-size: var(--font-size);
     --font-family: "Macondo", sans-serif;
     --font-family-simple: "Playpen Sans", sans-serif;
 
@@ -189,7 +190,7 @@ main {
     flex-direction: column;
     justify-self: center;
     gap: 1rem;
-    max-width: 1920px;
+    max-width: 2048px;
     margin: 1rem;
     padding: 1rem;
     background-color: hsl(var(--secondary-color));

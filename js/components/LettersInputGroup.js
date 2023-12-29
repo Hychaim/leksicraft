@@ -2,9 +2,10 @@ class LettersInputGroup extends HTMLElement {
     static css = `
         *{
             box-sizing: border-box;
+            font-size: var(--font-size);
         }
 
-        *:focus-visible {
+        *:focus-visible{
             outline: var(--outline);
         }
 
@@ -49,10 +50,95 @@ class LettersInputGroup extends HTMLElement {
         h4 span:active {
             background-color: hsl(var(--accent-color-dark));
         }
+
+        #add-phoneme-form {
+            display: inline-flex;
+            margin-block: 8px;
+            height: 2em;
+        }
+
+        #add-phoneme-form button {
+            height: 100%;
+            aspect-ratio: 1/1;
+            padding: 0;
+            border-radius: var(--border-radius);
+            font-family: var(--font-family-simple);
+            box-shadow: var(--box-shadow);
+        }
+
+        #add-phoneme-form #show-phoneme-input {
+            margin-inline: clamp(5px, 0.25em, 1em) calc(clamp(5px, 0.25em, 1em) * 0.75);
+            padding: 0;
+            border: hsl(var(--primary-color-dark)) 2px solid;
+            background-color: hsl(var(--primary-color));
+            color: var(--text-primary);
+            transition: var(--input-transition);
+            cursor: pointer;
+        }
+        #add-phoneme-form #show-phoneme-input:hover {
+            border-color: hsl(var(--secondary-color-light));
+        }
+        #add-phoneme-form #show-phoneme-input:active {
+            background-color: hsl(var(--primary-color-dark));
+        }
+
+        #add-phoneme-form #phoneme-input-container {
+            height: 100%;
+            display: flex;
+            visibility: hidden;
+            opacity: 0;
+            transition: var(--btn-transition);
+            transform: translateX(-50%);
+        }
+        #add-phoneme-form.active #phoneme-input-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        #add-phoneme-form #phoneme-input-container #phoneme-input {
+            height: 100%;
+            width: 4.5ch;
+            padding: 0.25em 0.5em;
+            font-family: var(--font-family-simple);
+            color: var(--text-primary);
+            border: none;
+            border-bottom: 2px solid;
+            border-color: hsl(var(--accent-color-light));
+            border-radius: var(--border-radius);
+            background-color: hsl(var(--primary-color-light));
+            box-shadow: inset var(--box-shadow);
+        }
+        #add-phoneme-form #phoneme-input-container #phoneme-input:invalid {
+            border-color: hsl(var(--error-color));
+        }
+        #add-phoneme-form #phoneme-input-container #phoneme-input:invalid:focus-visible {
+            outline-color: hsl(var(--error-color));
+        }
+
+        #add-phoneme-form #submit-phoneme {
+            margin-inline: calc(clamp(5px, 0.25em, 1em) * 0.75) clamp(5px, 0.25em, 1em);
+            border: hsl(var(--secondary-color-dark)) 2px solid;
+            background: hsl(var(--secondary-color));
+            color: var(--text-light-primary);
+            cursor: pointer;
+        }
+        #add-phoneme-form #submit-phoneme:hover {
+            border-color: hsl(var(--secondary-color));
+            background: hsl(var(--secondary-color-light));
+        }
+        #add-phoneme-form #submit-phoneme:active {
+            background: hsl(var(--secondary-color-dark));
+        }
     `
 
     titleEl = document.createElement("h4")
     symbolicCharEl = document.createElement("span")
+    addPhonemeForm = document.createElement("form")
+    showPhonemeInputBtn = document.createElement("button")
+    phonemeInputContainer = document.createElement("div")
+    phonemeInput = document.createElement("input")
+    submitPhonemeBtn = document.createElement("button")
 
     _letterInputs = []
 
@@ -111,9 +197,92 @@ class LettersInputGroup extends HTMLElement {
             this._letterInputs.push(input)
         }
 
+        this.buildAddPhonemeEl()
+        this.shadowRoot.append(this.addPhonemeForm)
+
+        this.showPhonemeInputBtn.addEventListener("click", () => {
+            this.displayPhonemeInput()
+        })
+        
+        this.phonemeInput.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                this.showPhonemeInputBtn.click()
+                this.showPhonemeInputBtn.focus()
+            }
+        })
+
+        this.addPhonemeForm.addEventListener("submit", (e) => {
+            e.preventDefault()
+            this.addPhoneme()
+        })
+
         this.symbolicCharEl.addEventListener("click", () => {
             this.toggleChecked()
         })
+    }
+
+    buildAddPhonemeEl() {
+        this.addPhonemeForm.id = "add-phoneme-form"
+        this.addPhonemeForm.name = "add-phoneme-form"
+
+
+        this.showPhonemeInputBtn.innerText = "+"
+        this.showPhonemeInputBtn.type = "button"
+        this.showPhonemeInputBtn.id = "show-phoneme-input"
+        this.showPhonemeInputBtn.title = "Add new phoneme"
+
+        this.phonemeInputContainer.id = "phoneme-input-container"
+        this.phonemeInputContainer.ariaHidden = true
+
+        this.phonemeInput.type = "text"
+        this.phonemeInput.name = "phoneme-input"
+        this.phonemeInput.id = "phoneme-input"
+        this.phonemeInput.placeholder = "ã"
+        this.phonemeInput.title = "Phoneme"
+        this.phonemeInput.autocomplete = "off"
+        this.phonemeInput.spellcheck = false
+        this.phonemeInput.autocapitalize = "off"
+        this.phonemeInput.autocorrect = "off"
+        this.phonemeInput.maxLength = 3
+
+        this.submitPhonemeBtn.innerText = "+"
+        this.submitPhonemeBtn.type = "submit-phoneme"
+        this.submitPhonemeBtn.id = "submit-phoneme"
+        this.submitPhonemeBtn.title = "Add phoneme"
+
+        this.phonemeInputContainer.append(this.phonemeInput, this.submitPhonemeBtn)
+        this.addPhonemeForm.append(this.showPhonemeInputBtn, this.phonemeInputContainer)
+
+        return this.addPhonemeForm
+    }
+
+    displayPhonemeInput() {
+        this.addPhonemeForm.classList.toggle("active")                  
+        this.phonemeInputContainer.ariaHidden = !this.addPhonemeForm.classList.contains("active")
+        this.addPhonemeForm.classList.contains("active")
+            ? this.showPhonemeInputBtn.innerText = "↩"
+            : this.showPhonemeInputBtn.innerText = "+"
+        setTimeout(() => {
+            this.phonemeInput.focus()
+            this.phonemeInput.select()
+        }, 200)
+    }
+
+    addPhoneme() {
+        const phoneme = this.phonemeInput.value
+        if (phoneme.length === 0 || phoneme.trim().length === 0) {
+            this.displayPhonemeInput()
+            return
+        }
+
+        const letterInput = document.createElement("letter-input")
+        letterInput.setAttribute("letter", phoneme)
+        letterInput.setAttribute("phonetic", phoneme)
+        this.shadowRoot.insertBefore(letterInput, this.addPhonemeForm)
+        this._letterInputs.push(letterInput)
+
+        this.displayPhonemeInput()
+        this.phonemeInput.value = ""
     }
 
     toggleChecked() {
