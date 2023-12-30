@@ -13,10 +13,9 @@ class WordList extends HTMLElement {
         }
         .title-container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             margin: var(--margin-h);
-            padding-inline: 0.5em;
+            padding: 0.25em 0.75em;
             line-height: var(--line-height-h);
             border-radius: var(--border-radius);
             background-color: hsl(var(--primary-color-dark));
@@ -29,8 +28,21 @@ class WordList extends HTMLElement {
             font-weight: var(--font-weight-h);
             word-break: break-all;
         }
-        .title-container > span {
+        .title-container > button {
+            margin-inline: 0.25em;
+            border: none;
+            background: none;
             color: hsl(var(--accent-color));
+            font-size: var(--font-size-h5);
+            font-family: var(--font-family-h);
+            font-weight: var(--font-weight-h);
+            cursor: pointer;
+        }
+        .title-container > .regen-btn {
+            margin-left: auto;
+        }
+        .title-container > span {
+            color: hsl(var(--secondary-color-light));
             font-style: italic;
         }
         ul {
@@ -67,10 +79,15 @@ class WordList extends HTMLElement {
 
     titleContainer = document.createElement("div")
     title = document.createElement("h4")
+    sortBtn = document.createElement("button")
+    regenBtn = document.createElement("button")
     uniqueCombinationsCount = document.createElement("span")
     wordList = document.createElement("ul")
 
+    _language = null
     _pattern = ""
+    _uniqueCombinationsCount = 0
+    _words = []
 
     constructor() {
         super()
@@ -80,6 +97,17 @@ class WordList extends HTMLElement {
         style.innerHTML = WordList.css
 
         this.shadowRoot.append(style)
+
+        this.sortWords = this.sortWords.bind(this)
+        this.regenWords = this.regenWords.bind(this)
+    }
+
+    get language() {
+        return this._language
+    }
+    set language(value) {
+        this._language = value
+        this.updateWordsData()
     }
 
     get pattern() {
@@ -100,34 +128,70 @@ class WordList extends HTMLElement {
     render() {
         this.title.innerText = this.pattern
         this.titleContainer.className = "title-container"
-        this.titleContainer.append(this.title, this.uniqueCombinationsCount)
+        this.sortBtn.innerText = "⚂"
+        this.sortBtn.title = "Sort words"
+        this.regenBtn.innerText = "↺"
+        this.regenBtn.title = "Regenerate words"
+        this.regenBtn.classList.add("regen-btn")
+        this.titleContainer.append(this.title, this.sortBtn, this.regenBtn, this.uniqueCombinationsCount)
         this.shadowRoot.append(this.titleContainer, this.wordList)
+
+        this.sortBtn.addEventListener("click", this.sortWords)
+        this.regenBtn.addEventListener("click", this.regenWords)
     }
 
-    updateWords(wordsData) {
+    updateWordsData() {
+        this.displayUniqueCombinationsCount()
+        this.displayWords()
+    }
+
+    displayWords() {
+        this._words = this.language.wordsData[this.pattern].words
         this.wordList.innerHTML = ""
-
-        this.uniqueCombinationsCount.title = Intl.NumberFormat("en-US", {}).format(wordsData.uniqueCombinationsCount)
-        let uniqueCombinationsCount = this.formatUniqueCombinationNumber(wordsData.uniqueCombinationsCount)
-        this.uniqueCombinationsCount.innerText = uniqueCombinationsCount
-
-        if (wordsData.uniqueCombinationsCount === 0) {
+        if (this._uniqueCombinationsCount === 0) {
             this.wordList.innerHTML = "No words found"
             return
         }
-        wordsData.words.forEach((word) => {
+        this._words.forEach((word) => {
             const listItem = document.createElement("li")
             listItem.textContent = word
             this.wordList.appendChild(listItem)
         })
     }
 
+    displayUniqueCombinationsCount() {
+        this._uniqueCombinationsCount = this.language.wordsData[this.pattern].uniqueCombinationsCount
+        this.uniqueCombinationsCount.title = Intl.NumberFormat("en-US", {}).format(this._uniqueCombinationsCount) + " unique combinations"
+        this.uniqueCombinationsCount.innerText = this.formatUniqueCombinationNumber(this._uniqueCombinationsCount)
+    }
+
     formatUniqueCombinationNumber(number, maxThreshold = 100000000000000) {
-        if (number > maxThreshold) {
-            return `+${new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(maxThreshold)}`
-        } else {
-            return Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(number)
+        return Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(
+            number > maxThreshold ? maxThreshold : number
+        )
+    }
+
+    sortWords() {
+        switch (this.sortBtn.innerText) {
+            case "⚂":
+                this.sortBtn.innerText = "↑"
+                this.updateWordsData({ words: this._words.sort() })
+                break;
+            case "↑":
+                this.sortBtn.innerText = "↓"
+                this.updateWordsData({ words: this._words.sort().reverse() })
+                break;
+            case "↓":
+                this.sortBtn.innerText = "⚂"
+                this.updateWordsData({ words: this._words.sort(() => 0.5 - Math.random()) })
+                break;
         }
+    }
+
+    regenWords() {
+        this.language.generateWords()
+        this.updateWordsData()
+        this.sortBtn.innerText = "⚂"
     }
 }
 

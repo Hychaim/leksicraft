@@ -45,7 +45,7 @@ class Language {
 
             this.wordsData[pattern] = {}
             this.wordsData[pattern].uniqueCombinationsCount = uniqueCombinationsCount
-            this.wordsData[pattern].words = Array.from(wordsSet).sort()
+            this.wordsData[pattern].words = Array.from(wordsSet)
         })
     }
 

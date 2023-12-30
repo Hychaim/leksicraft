@@ -106,6 +106,7 @@ class LetterInput extends HTMLElement {
         this.input.name = this.name
         this.input.id = this.letter
         this.input.value = this.letter
+        this.input.title = this.phonetic
 
         this.label.innerText = this.letter
         this.label.htmlFor = this.letter
